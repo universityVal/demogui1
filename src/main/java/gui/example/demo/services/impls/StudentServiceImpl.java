@@ -48,7 +48,8 @@ public class StudentServiceImpl implements IStudentService {
     }
 
     @Override
-    public Student create(Student student) {
-        return null;
+    public Student create(Student student)
+    {
+        return studentRepository.save(student);
     }
 }

@@ -52,23 +52,23 @@ public class StudentController {
         return  "sts";
     }
 
-//     @RequestMapping(value = "/student/add", method = RequestMethod.GET)
-//    public String addStudent(Model model){
-//        StudentForm studentForm = new StudentForm();
-//        model.addAttribute("studentForm", studentForm);
-//        return "add";
-//    }
-//
-//    @RequestMapping(value = "/student/add", method = RequestMethod.POST)
-//    public String addStudent(Model model,
-//                             @ModelAttribute("studentForm") StudentForm studentForm){
-//
-//        Student newStudent = new Student(studentForm.getId(),
-//                studentForm.getName(), studentForm.getMark());
-//        students.add(newStudent);
-//        model.addAttribute("students", students);
-//        return "sts";
-//    }
+     @RequestMapping(value = "/student/add", method = RequestMethod.GET)
+    public String addStudent(Model model){
+        StudentForm studentForm = new StudentForm();
+        model.addAttribute("studentForm", studentForm);
+        return "add";
+    }
+
+    @RequestMapping(value = "/student/add", method = RequestMethod.POST)
+    public String addStudent(Model model,
+                             @ModelAttribute("studentForm") StudentForm studentForm){
+
+        Student newStudent = new Student(studentForm.getId(),
+                studentForm.getName(), studentForm.getMark());
+        studentService.create(newStudent);
+        model.addAttribute("students", studentService.getAll());
+        return "sts";
+    }
 
 
 
