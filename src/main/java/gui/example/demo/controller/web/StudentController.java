@@ -40,22 +40,18 @@ public class StudentController {
         return  "sts";
     }
 
-//    @RequestMapping(value = { "/student/delete/{id}"},
-//            method = RequestMethod.GET)
-//    String del(Model model, @PathVariable("id") int id){
-//
-//        log.info("Method delete was called with param " + id);
-//        List<Student> listOfStudentsAfterDeletion
-//        = students.stream().filter(student -> student.getId() != id)
-//        .collect(Collectors.toList());
-//        students = listOfStudentsAfterDeletion;
-//
-//        log.info("Deletion was successful");
-//
-//        model.addAttribute("students", students);
-//        return  "sts";
-//    }
-//
+    @RequestMapping(value = { "/student/delete/{id}"},
+            method = RequestMethod.GET)
+    String del(Model model, @PathVariable("id") int id){
+
+       log.info("Method delete was called with param " + id);
+        studentService.delete(id);
+        log.info("Deletion was successful");
+
+        model.addAttribute("students", studentService.getAll());
+        return  "sts";
+    }
+
 //     @RequestMapping(value = "/student/add", method = RequestMethod.GET)
 //    public String addStudent(Model model){
 //        StudentForm studentForm = new StudentForm();
