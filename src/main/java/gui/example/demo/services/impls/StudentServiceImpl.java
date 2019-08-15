@@ -50,6 +50,14 @@ public class StudentServiceImpl implements IStudentService {
     @Override
     public Student create(Student student)
     {
+        int lastId = studentRepository
+                .findAll()
+                .stream()
+                .mapToInt(Student::getId).max()
+                .getAsInt();
+
+        student.setId(lastId+1);
+
         return studentRepository.save(student);
     }
 }

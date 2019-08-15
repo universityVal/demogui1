@@ -15,6 +15,11 @@ public class Student {
     public Student() {
     }
 
+    public Student(String name, byte mark) {
+        this.name = name;
+        this.mark = mark;
+    }
+
     public Student(int id, String name, byte mark) {
         this.id = id;
         this.name = name;
