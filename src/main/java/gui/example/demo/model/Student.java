@@ -8,21 +8,23 @@ public class Student {
 
     @Id
     private int  id;
-
     private String name;
+    private String grupa;
     private byte mark;
 
     public Student() {
     }
 
-    public Student(String name, byte mark) {
+    public Student(String name, String grupa, byte mark) {
         this.name = name;
+        this.grupa = grupa;
         this.mark = mark;
     }
 
-    public Student(int id, String name, byte mark) {
+    public Student(int id, String name, String grupa, byte mark) {
         this.id = id;
         this.name = name;
+        this.grupa = grupa;
         this.mark = mark;
     }
 
@@ -42,6 +44,14 @@ public class Student {
         this.name = name;
     }
 
+    public String getGrupa() {
+        return grupa;
+    }
+
+    public void setGrupa(String grupa) {
+        this.grupa = grupa;
+    }
+
     public byte getMark() {
         return mark;
     }
@@ -55,6 +65,7 @@ public class Student {
         return "Student{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", grupa='" + grupa + '\'' +
                 ", mark=" + mark +
                 '}';
     }

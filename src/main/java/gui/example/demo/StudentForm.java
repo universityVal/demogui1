@@ -3,7 +3,8 @@ package gui.example.demo;
 public class StudentForm {
     private int  id;
     private String name;
-    private byte mark;
+    private String grupa;
+    private byte mark;;
 
     public int getId() {
         return id;
@@ -19,6 +20,14 @@ public class StudentForm {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getGrupa() {
+        return grupa;
+    }
+
+    public void setGrupa(String grupa) {
+        this.grupa = grupa;
     }
 
     public byte getMark() {

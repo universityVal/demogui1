@@ -9,6 +9,7 @@ public interface IStudentService {
     List<Student> getAll();
     void delete(int id);
     Student create(Student student);
+    List<Student> getByGrupa(String grupName);
 
 
 

@@ -17,9 +17,11 @@
     <fieldset>
         <legend>Add student</legend>
         <form name="student" action="" method="POST">
-            ID:<@spring.formInput "studentForm.id" "" "text"/>
-            <br>
+<#--            ID:<@spring.formInput "studentForm.id" "" "text"/>-->
+<#--            <br>-->
             name:<@spring.formInput "studentForm.name" "" "text"/>
+            <br>
+           grupa:<@spring.formInput "studentForm.grupa" "" "text"/>
             <br>
             mark:<@spring.formInput "studentForm.mark" "" "text"/>
             <br>

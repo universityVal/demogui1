@@ -4,14 +4,13 @@ import gui.example.demo.model.Student;
 import gui.example.demo.repository.StudentRepository;
 import gui.example.demo.services.interfaces.IStudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.query.*;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 @Service
@@ -32,6 +31,7 @@ public class StudentServiceImpl implements IStudentService {
     @PostConstruct
     void init(){
       //  studentRepository.saveAll(students);
+        this.gruping();
     }
 
 
@@ -60,4 +60,43 @@ public class StudentServiceImpl implements IStudentService {
 
         return studentRepository.save(student);
     }
+
+    @Override
+    public List<Student> getByGrupa(String grupName) {
+        Query query = new Query();
+        Criteria criteria = Criteria.where("grupa").is("142");
+        query.addCriteria(Criteria.where("grupa").is("142"));
+        List<Student> fetchedByGrupa = studentRepository.findAll();
+        return null;
+    }
+    public void gruping(){
+
+        Map<String, List<Student>> collect = this.getAll().stream()
+                .collect(Collectors.groupingBy(Student::getGrupa));
+
+        Map<String, Long> counting = this.getAll().stream()
+                .collect(Collectors.groupingBy(Student::getGrupa,
+                        Collectors.counting()));
+        System.out.println(counting);
+
+        Map<String, Double> averaging = this.getAll().stream()
+                .collect(Collectors.groupingBy(Student::getGrupa,
+                        Collectors.averagingDouble(Student::getMark)));
+        System.out.println(averaging);
+
+        final List<Map.Entry<String, Double>> sorted = averaging.entrySet().stream()
+                .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder())).collect(Collectors.toList());
+
+        System.out.println(sorted);
+
+        Map<String, Optional<Student>> max = this.getAll().stream()
+                .collect(Collectors.groupingBy(Student::getGrupa,
+                        Collectors.maxBy(Comparator.comparing(Student::getMark))));
+
+        System.out.println(max);
+
+
+    }
+
+
 }

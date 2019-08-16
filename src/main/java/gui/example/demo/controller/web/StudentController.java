@@ -63,8 +63,12 @@ public class StudentController {
     public String addStudent(Model model,
                              @ModelAttribute("studentForm") StudentForm studentForm){
 
-        Student newStudent = new Student(studentForm.getId(),
-                studentForm.getName(), studentForm.getMark());
+        Student newStudent = new Student(
+                studentForm.getName(),
+                studentForm.getGrupa(),
+                studentForm.getMark());
+
+
         studentService.create(newStudent);
         model.addAttribute("students", studentService.getAll());
         return "sts";
